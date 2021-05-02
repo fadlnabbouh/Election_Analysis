@@ -1,48 +1,4 @@
 
-##Assign a variable for the file to load and the path
-#import csv
-
-#file_to_load = 'Resources/election_results.csv'
-
-##Open the election results and read the file
-
-#election_data = open(file_to_load, 'r')
-
-#To do: perform analysis
-
-#Close the file 
-
-#election_data.close()
-
-#Open the file using 'with'
-
-#with open(file_to_load) as election_data:
-#    print(election_data)
-
-#indirect method
-
-#import os
-#file_to_load = os.path.join("Resources", "election_results.csv")
-#with open(file_to_load) as election_data:
-#    print(election_data)
-
-#create filename variable
-#file_to_save = os.path.join("analysis", "election_analysis.txt")
-#write data to the file
-#outfile = open(file_to_save, "w")
-#outfile.write("Hello World")
-#outfile.close()
-#Cleaner: 
-
-#with open(file_to_save, "w") as txt_file:
-#    txt_file.write("Counties in the Election\n-------------------------\nArapahoe\nDenver\nJefferson")
-
-
-
-
-
-#pseudocode
-
 #Retrieve Data
 #Add dependencies
 import csv
@@ -55,18 +11,65 @@ file_to_save = os.path.join("analysis", "election_analysis.txt")
 
 #open the election results and read the file 
 
+#initialize total vote counter
+total_votes = 0
+candidate_options = []
+candidate_votes = {}
+
+winning_candidate = ""
+winning_count = 0
+winning_percentage = 0
+
 with open(file_to_load) as election_data:
     #To do: read and analyze the data here
 
     file_reader = csv.reader(election_data)
-    #print each row in the CSV file
-    #for row in file_reader:
-    #    print (row)
     #Read and print header row 
 
     headers = next(file_reader)
-    print(headers)
+
+    for row in file_reader:
+        
+        #add to total vote count
+        total_votes += 1
+        
+        #retrieve candidate name from each row
+        candidate_name= row[2]
+        
+        if candidate_name not in candidate_options:
+            #add candidate name to candidate list
+            candidate_options.append(candidate_name)
+            #begin tracking candidate's vote count
+            candidate_votes[candidate_name] = 0
+        #add a vote to that candidate's count
+        candidate_votes[candidate_name] += 1
+
+for candidate_name in candidate_votes:
+    #retrieve vote count of a candidate
+    votes=candidate_votes[candidate_name]     
+    #calculate percentage
+    vote_percentage = float(votes)/ float(total_votes) * 100
     
+    print(f"{candidate_name}: {vote_percentage:.1f}% ({votes:,})\n")
+    
+    if  (votes > winning_count) and (vote_percentage > winning_percentage):
+        winning_count = votes
+        winning_percentage = vote_percentage
+        winning_candidate = candidate_name
+
+    #print(f"{candidate_name}: received {vote_percentage:.1f}% of the vote.")
+winning_candidate_summary=(
+     f"------------------------------\n"
+     f"Winner: {winning_candidate}\n"
+     f"Winning Vote Count: {winning_count:,}\n"
+     f"Winning Percentage: {winning_percentage:.1f}%\n"
+     f"--------------------------------\n")
+print(winning_candidate_summary)
+
+
+
+
+
 #1. Retrieve total number of votes cast 
 #2. Retrieve list of candidates with at least one vote
 #3. Retrieve total number of votes each candidate received

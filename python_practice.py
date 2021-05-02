@@ -77,3 +77,48 @@ message_to_candidate = (
     f"You received {candidate_votes / total_votes * 100:.2f}% of the total votes.")
 
 print(message_to_candidate)
+
+##Assign a variable for the file to load and the path
+#import csv
+
+#file_to_load = 'Resources/election_results.csv'
+
+##Open the election results and read the file
+
+#election_data = open(file_to_load, 'r')
+
+#To do: perform analysis
+
+#Close the file 
+
+#election_data.close()
+
+#Open the file using 'with'
+
+#with open(file_to_load) as election_data:
+#    print(election_data)
+
+#indirect method
+
+#import os
+#file_to_load = os.path.join("Resources", "election_results.csv")
+#with open(file_to_load) as election_data:
+#    print(election_data)
+
+#create filename variable
+#file_to_save = os.path.join("analysis", "election_analysis.txt")
+#write data to the file
+#outfile = open(file_to_save, "w")
+#outfile.write("Hello World")
+#outfile.close()
+#Cleaner: 
+
+#with open(file_to_save, "w") as txt_file:
+#    txt_file.write("Counties in the Election\n-------------------------\nArapahoe\nDenver\nJefferson")
+
+#print each row in the CSV file
+    #for row in file_reader:
+    #    print (row)
+
+#remove first row 
+headers = next(file_reader)
