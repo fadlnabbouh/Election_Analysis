@@ -25,7 +25,7 @@ The results of the Election are as follows:
 	- Total Votes: 272,892
 	- Vote Percentage: 73.8%
 
-A screenshot of how the script appears in terminal after running can be found here: ![Screenshot]().
+A screenshot of how the script appears in terminal after running can be found here: ![Screenshot](https://github.com/fadlnabbouh/Election_Analysis/blob/main/Resources/Terminal%20Screenshot.png).
 
 ## Election Audit Summary 
 
